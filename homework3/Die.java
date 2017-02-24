@@ -120,7 +120,6 @@ public class Die {
 	  System.out.println("Die roll: " + d);
 	  System.out.println("Die Instance String: " + d.toString());
 	  System.out.println("Die Static String: " + toString(d));
-      System.out.println( "Hello from the Die class main method!" );
    }
 
 }
