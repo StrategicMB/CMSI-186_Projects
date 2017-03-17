@@ -5,7 +5,8 @@
  *  Date written  :  2017-03-16
  *  Description   :  This class provides a bunch of methods which are used for ClockSolver
  *
- *  Notes         :  None
+ *  Notes         :  Validation of both the timeSlice argument and Angle argument are handled 
+ *					 in the ClockSolver program.
  *  Warnings      :  None
  *  Exceptions    :  IllegalArgumentException when the input arguments are "hinky"
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -65,6 +66,7 @@ public class Clock {
 	    double minutes = this.currentTimeMin;
 		double hour = this.currentTimeHour;
 		double angleHour = (hour * 30)+(minutes / 2)+(seconds / 120);
+		
 		return angleHour;
 	}
 
@@ -76,6 +78,8 @@ public class Clock {
 		double seconds = this.currentTimeSec;
 		double minutes = this.currentTimeMin;
 		double angleMin = (minutes * 6)+(seconds / 10);
+		
+
 		return angleMin;
 	}
 
@@ -86,8 +90,9 @@ public class Clock {
     public double getHandAngle() {
 		searchAngle = this.getMinuteHand() - this.getHourHand(); 
 		if (searchAngle < 0) {
-			searchAngle = searchAngle + 360;
+			searchAngle = searchAngle * -1;
 		}
+		
 		return searchAngle;
 	}
 
@@ -119,7 +124,7 @@ public class Clock {
                           "--------------------------\n" );
 		System.out.println( "  Creating a new clock: " );
 		Clock clockTest = new Clock(240,60);  
-				
+						
 		System.out.println( "    Testing tick()....");
 		System.out.print( "      sending '  240 seconds', expecting double value   300.0" );
 		try { System.out.println( (300.0 == clockTest.tick()) ? " - got   300.0" : " - no joy" ); }

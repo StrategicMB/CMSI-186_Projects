@@ -24,6 +24,8 @@
 
 public class ClockSolver {
    
+   public static final double DEGREES_PER_SECOND = 5.5/60;
+   
    /**
     *  Constructor
     *  This just calls the superclass constructor, which is "Object"
@@ -86,19 +88,34 @@ public class ClockSolver {
 			}
 		}
 	  
-		if (timeSlice > 200) {
-			System.out.println("Warning: TimeSlices above 200 are more likely to miss angles");
+		if (timeSlice == 0) {
+			System.out.println("Error: Please enter non-zero TimeSlice");
+			System.exit(1);
+		} else if (timeSlice < 0.0005) {
+			System.out.println("Error: TimeSlice too small to run efficiently");
+			System.exit(1);
+		}
+		
+		
+		if (timeSlice > 300) {
+			System.out.println("Warning: Higher Timeslices are less accurate");
 		}
 	  
 		Clock clock = new Clock(0,timeSlice);
-		double searchRange = timeSlice/20;
+		double searchRange = (timeSlice * DEGREES_PER_SECOND)/2;
 		double currentAngle = 0;
+		double complementAngle = 0;		
 	  
 		while (clock.tick() < 43200) {
 			currentAngle = clock.getHandAngle();
+			complementAngle = 360 - currentAngle;
 			if (currentAngle >= searchAngle - searchRange && currentAngle < searchAngle + searchRange){
 				System.out.println(clock.toString());
 			}
+			if (complementAngle >= searchAngle - searchRange && complementAngle < searchAngle + searchRange){
+				System.out.println(clock.toString());
+			}
+			
 		}
 		System.exit( 0 );
 	}
