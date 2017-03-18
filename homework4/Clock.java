@@ -17,6 +17,7 @@
  *  @version 1.0.0  2017-02-28  B.J. Johnson  Initial writing and release
  *  @version 1.1.0  2017-03-16  Michael Brady Writing logic for methods
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+   import java.text.DecimalFormat;
 
 public class Clock {
    /**
@@ -28,7 +29,6 @@ public class Clock {
     private double currentTimeMin;
     private double currentTimeHour;
     private double timeSlice;
-   
    
    /**
     *  Constructor goes here
@@ -102,12 +102,14 @@ public class Clock {
     *  @return String value of the current clock
     */
     public String toString() {
-		String Seconds = String.valueOf(currentTimeSec);
-		String Minutes = String.valueOf(currentTimeMin);
+		DecimalFormat df = new DecimalFormat("0");
+
+		String Seconds = String.valueOf(df.format(currentTimeSec));
+		String Minutes = String.valueOf(df.format(currentTimeMin));
 		if (currentTimeHour == 0) {
 			currentTimeHour = 12;
 		}
-		String Hours = String.valueOf(currentTimeHour);
+		String Hours = String.valueOf(df.format(currentTimeHour));
 	    String NoteTime = Hours + ":" + Minutes + ":" + Seconds;
 		return NoteTime;
 	}
