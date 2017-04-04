@@ -1,20 +1,19 @@
 /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  File name     :  Ball.java
+ *  File name     :  Field.java
  *  Purpose       :  Provides a class defining methods for the SoccerSim class
  *  @author       :  Michael Brady
  *  Date written  :  2017-03-16
- *  Description   :  This class provides a bunch of methods which are used for ClockSolver
+ *  Description   :  This class provides a method used for the SoccerSim and generates the field object
  *
- *  Notes         :  Validation of both the timeSlice argument and Angle argument are handled 
- *					 in the ClockSolver program. 0 degrees is east.
+ *  Notes         :  None
  *  Warnings      :  None
- *  Exceptions    :  IllegalArgumentException when the input arguments are "hinky"
+ *  Exceptions    :  None
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *  Revision Histor
  *  ---------------
  *            Rev      Date     Modified by:  Reason for change/modification
  *           -----  ----------  ------------  -----------------------------------------------------------
- *  @version 1.0.0  2017-03-16  Michael Brady Writing logic for methods
+ *  @version 1.0.0  2017-04-4  Michael Brady  Writing logic for method
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
  
 public class field {
@@ -47,7 +46,7 @@ public class field {
 		
 		field playfield = new field();
 		
-		playfield.checkDistance(
+		System.out.println(playfield.checkDistance(0,1,0,4));
 
    }
 }
