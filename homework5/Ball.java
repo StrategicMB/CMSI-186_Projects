@@ -16,6 +16,9 @@
  *  @version 1.0.0  2017-04-04  Michael Brady Writing logic for methods
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+ import java.text.DecimalFormat;
+
+ 
 public class Ball {
 		
     private double angle;
@@ -76,22 +79,45 @@ public class Ball {
   public static void main( String args[] ) {
 		System.out.println( "\nBALL CLASS TESTER PROGRAM\n");
               
-		Ball ballTest = new Ball(1,1,10,10,1);
+		Ball ballTest = new Ball(1,1,10,30,1);
 		
-
+		DecimalFormat df = new DecimalFormat("0.00");
 			
-		
-/**
-			  "--------------------------\n" );
-		System.out.println( "  Creating a new clock: " );
-		Clock clockTest = new Clock(240,60);  
-				
-					
-		System.out.println( "    Testing tick()....");
-		System.out.print( "      sending '  240 seconds', expecting double value   300.0" );
-		try { System.out.println( (300.0 == clockTest.tick()) ? " - got   300.0" : " - no joy" ); }
+			
+		System.out.println( "    Testing xLocation()....");
+		System.out.print( "      sending 1, expecting double value 1.0" );
+		try { System.out.println( (1.0 == ballTest.xLocation()) ? " - got   1.0" : " - no joy" ); }
 		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
-		*/
+		
+		System.out.println( "    Testing yLocation()....");
+		System.out.print( "      sending 1, expecting double value 1.0" );
+		try { System.out.println( (1.0 == ballTest.yLocation()) ? " - got   1.0" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+		
+		System.out.println( "    Testing currentSpeed()....");
+		System.out.print( "      sending 10, expecting double value 10.0" );
+		try { System.out.println( (10.0 == ballTest.currentSpeed()) ? " - got   10.0" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+   
+		ballTest.friction();
+		
+		System.out.println( "    Testing currentSpeed()....");
+		System.out.print( "      sending 10 with friction, expecting double value 9.9" );
+		try { System.out.println( (9.90 == ballTest.currentSpeed()) ? " - got   9.9" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+   
+		ballTest.ballMoves();
+		
+		System.out.println( "    Testing xLocation()....");
+		System.out.print( "      ball moved, expecting string 5.95" );
+		try { System.out.println( ("5.95".equals(df.format(ballTest.xLocation()))) ? " - got   5.95" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+		
+		System.out.println( "    Testing yLocation()....");
+		System.out.print( "      ball moved, expecting string 9.57" );
+		try { System.out.println( ("9.57".equals(df.format(ballTest.yLocation()))) ? " - got   9.57" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+   
    }
    
 }
