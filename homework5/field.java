@@ -16,7 +16,7 @@
  *           -----  ----------  ------------  -----------------------------------------------------------
  *  @version 1.0.0  2017-03-16  Michael Brady Writing logic for methods
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
+ 
 public class field {
 	
 		
@@ -28,23 +28,11 @@ public class field {
 		super();
     }
   
-	public void checkBallCollision() {
-		
-		
-		
+	public double checkDistance(double xPos1, double yPos1, double xPos2, double yPos2) {
+		double distanceBetween = Math.sqrt(Math.pow((xPos1-xPos2),2) + Math.pow((yPos1-yPos2),2));
+		return distanceBetween;
 	}
   
-  	public void checkPoleCollision() {
-		
-		
-		
-	}
-  	
-	public void checkIfMoving() {
-		
-		
-		
-	}
 	
 
   
@@ -57,6 +45,9 @@ public class field {
     */
     public static void main( String args[] ) {
 		
+		field playfield = new field();
+		
+		playfield.checkDistance(
 
    }
 }

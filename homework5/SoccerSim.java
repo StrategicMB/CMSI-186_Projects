@@ -21,11 +21,14 @@
  *                                            Update to handleInitialArguments
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
- 
-       		import java.util.ArrayList;
+import java.text.DecimalFormat;
 
 public class SoccerSim {
+	
+	private static double ballRadius = 4.45; // inches
+	private static double maxSpeed = 192; // ft/sec
 
+	
    /**
     *  Constructor
     *  This just calls the superclass constructor, which is "Object"
@@ -38,9 +41,14 @@ public class SoccerSim {
     public static void main( String args[] ) {
 		
 		SoccerSim socsim = new SoccerSim();
-		
+		field playField = new field();
 		
 		int argsCount = args.length; 
+		int ballCount = (argsCount - 2) / 4;		
+
+		double ballContactRange = ballRadius/6;
+		double flagContactRange = ballRadius/12;
+		
 		
 			double xPosBalls = 0;
 			double yPosBalls = 0;
@@ -49,9 +57,10 @@ public class SoccerSim {
 
 			
 		Ball[] bs = null;
-		
+		flag flagPole = null;
+		/**
 		ArrayList<Ball> ballList = new ArrayList<Ball>();
-
+*/
 		
 		if( 2 != argsCount % 4 ) {
 			System.out.println( "    Sorry you must enter at least one argument\n" +
@@ -67,9 +76,8 @@ public class SoccerSim {
 				double xPosFlag = Double.parseDouble(args[0]);
 				double yPosFlag = Double.parseDouble(args[1]);
 				
-				flag flagLoc = new flag(xPosFlag, yPosFlag);
+				flagPole = new flag(xPosFlag, yPosFlag);
 
-				int ballCount = (argsCount - 2) / 4;		
 				bs = new Ball[ballCount];
 				int j = 0;
 					for (int i = 2; i < argsCount; i+=4) {
@@ -98,11 +106,56 @@ public class SoccerSim {
 			 System.exit(1);
 			}
 		
-		System.out.println(bs[0].xLocation());
 
+		while(true) {
+			for (int i = 0; i < ballCount-1; i++){
+				for (int j = i+1; j < ballCount; j++){
+					double ballDistance = playField.checkDistance(bs[i].xLocation(), bs[i].yLocation(), bs[j].xLocation(), bs[j].yLocation());
+					
+					if (ballDistance < ballContactRange) {
+						System.out.println("Collision");
+						System.exit(1);
+					}
+				}
+			}
+			
+			
+			for (int k = 0; k < ballCount; k++){
+				double flagDistance = playField.checkDistance(bs[k].xLocation(), bs[k].yLocation(), flagPole.xLocation(), flagPole.yLocation());
+				System.out.println(flagDistance);
+				if (flagDistance < flagContactRange) {
+					System.out.println("Collision");
+					System.exit(1);
+				}
+				
+			}
+			
+			int stoppedBalls = 0;
+			for (int s = 0; s < ballCount; s++) {
+				double momentSpeed = bs[s].currentSpeed();
+				DecimalFormat df = new DecimalFormat("0.00");
+
+				System.out.println("Ball " + s + " is at coordinates " + df.format(bs[s].xLocation()) + ", " + df.format(bs[s].yLocation()) + " with a speed of " + df.format(momentSpeed));
+				
+				if (0 == momentSpeed) {
+					stoppedBalls = stoppedBalls + 1;
+					
+					if (stoppedBalls == ballCount) {
+						System.out.println("All balls stopped");
+						System.exit(1);
+					}
+					
+				}
+			}
+			
+			for (int z = 0; z< ballCount; z++) {
+				bs[z].ballMoves();
+				bs[z].friction();
+			}
+			
+			
+		}
 		
-		
-		field playfield = new field();
 		
 		
 	}

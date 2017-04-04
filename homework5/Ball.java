@@ -18,10 +18,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 public class Ball {
-	
-	private final double ballRadius = 4.45;
-	private final double maxSpeed = 192; // ft/sec
-	
+		
    /**
     *  Class field definintions go here
     */
@@ -43,12 +40,13 @@ public class Ball {
 	this.xPos = xStartPos;
 	this.yPos = yStartPos;
 	this.ballSpeed = speed;
+	this.angle = angle;
 
 	}
 
-	public void ballMoves(double ballSpeed, double angle) {
-		double velocityVecsX = this.ballSpeed * Math.cos(angleToRad(angle));
-		double velocityVecsY = this.ballSpeed * Math.sin(angleToRad(angle));
+	public void ballMoves() {
+		double velocityVecsX = this.ballSpeed * Math.cos(angleToRad(this.angle));
+		double velocityVecsY = this.ballSpeed * Math.sin(angleToRad(this.angle));
 		xPos = this.xPos + velocityVecsX * timeSlice;
 		yPos = this.yPos + velocityVecsY * timeSlice;
 	}
@@ -70,6 +68,10 @@ public class Ball {
 		return this.yPos;
 	}
 	
+	public double currentSpeed(){
+		return this.ballSpeed;
+	}
+	
 	public void tick(){
 		timeElapsed = this.timeElapsed + timeSlice;
 	}
@@ -81,8 +83,8 @@ public class Ball {
 	}
   
    public String toString() {
-	   double currentSpeed = this.ballSpeed;
-	   String stringResult = String.valueOf(currentSpeed);
+	   double insSpeed = this.ballSpeed;
+	   String stringResult = String.valueOf(insSpeed);
       return stringResult;
    }
 

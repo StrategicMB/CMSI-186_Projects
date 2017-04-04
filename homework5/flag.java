@@ -9,4 +9,12 @@ public class flag{
 	this.yPos = yPos;
 	
 	}
+	
+	public double xLocation(){
+		return this.xPos;
+	}
+	
+	public double yLocation(){
+		return this.yPos;
+	}
 }
