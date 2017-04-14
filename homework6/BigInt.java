@@ -49,18 +49,28 @@ public class BigInt {
 			sign1 = 1;
 		}else if (checkSign(strInt) < 0){
 			sign1 = -1;
+		}else if (checkSign(strInt) == 0){
+			sign1 = 0;
 		}
 		if (checkSign(bigIntStr) > 0){
 			sign2 = 1;
 		}else if (checkSign(bigIntStr) < 0){
 			sign2 = -1;
+		}else if (checkSign(bigIntStr) == 0){
+			sign2 = 0;
 		}
 		
+		
 				
-		if (sign1 * -1 == sign2) {
+		if (sign1 == 0) {
+			sumStrings = bigIntStr;
+		}else if (sign2 == 0) {
+			sumStrings = strInt;
+		}else if (sign1 * -1 == sign2) {
 			subtract(strInt);
 			System.exit(1);
 		}else if (sign1 == sign2){
+
 			int stringLength = 0;
 			int lengthDiff = 0;
 			
@@ -75,6 +85,7 @@ public class BigInt {
 					isSigned = 1;
 					forNegatives = "-";
 				}
+
 			}else {
 				stringLength = bigIntStr.length();
 				lengthDiff = stringLength - strInt.length();
@@ -86,23 +97,13 @@ public class BigInt {
 					isSigned = 1;
 					forNegatives = "-";
 				}
-				
-			}
-	
-			System.out.println("str1: " + strInt);
-			System.out.println("str2: " + bigIntStr);
 
-	
+			}
+
 			for (int i = stringLength - isSigned - 1; i >= 0; i--){
 				
 				char character1 = strInt.charAt(i);
-				char character2 = bigIntStr.charAt(i);
-				
-
-				System.out.println("char1: " + character1);
-				System.out.println("char2: " + character2);
-
-				
+				char character2 = bigIntStr.charAt(i);				
 				
 				if (character1 == '+') {
 					character1 = '0';
@@ -116,25 +117,29 @@ public class BigInt {
 				}
 				number1 = Character.getNumericValue(character1);
 				number2 = Character.getNumericValue(character2);
+
 			
 				sumDigits = number1 + number2 + remainderAdd;
 				if (sumDigits > 9) {
 					remainderAdd = 1;
-					sumDigits = sumDigits - 10;
+					if (i>0){
+						sumDigits = sumDigits - 10;
+					}
 				}else {
 					remainderAdd = 0;
 				}
 				
 				digitsString = Integer.toString(sumDigits);
+
 				
 				sumStrings = digitsString + sumStrings;
+				
 			}
 			
 			
 		}
-		
+
 		bigIntStr = forNegatives + sumStrings;
-		System.out.println("test: " + bigIntStr);
 
 		
 		return bigIntStr;
@@ -189,7 +194,6 @@ public class BigInt {
 				stringLength = strInt.length();
 				lengthDiff = stringLength - bigIntStr.length();
 				String zeroString = createZerosString(lengthDiff);
-								System.out.println("zero1: " + zeroString);
 
 				bigIntStr = zeroString + bigIntStr;			
 				if (checkSign(strInt) == 1){
@@ -211,9 +215,6 @@ public class BigInt {
 				}
 				
 			}
-
-			System.out.println("str1: " + strInt);
-			System.out.println("str2: " + bigIntStr);
 			
 			if (compareTo(strInt) == 1) {
 				forNegatives = "-";
@@ -229,8 +230,6 @@ public class BigInt {
 					character1 = strInt.charAt(i);
 					character2 = bigIntStr.charAt(i);
 				}
-				System.out.println("char: " + character2);
-
 				
 				if (character1 == '+') {
 					character1 = '0';
@@ -244,16 +243,8 @@ public class BigInt {
 				}
 				number1 = Character.getNumericValue(character1);
 				number2 = Character.getNumericValue(character2);
-			
-				System.out.println("number1: " + number1);
-				System.out.println("number2: " + number2);
 
-			
-			
 				number2 = number2 + remainderSUB;
-				System.out.println("number2 + remsub: " + number2);
-				System.out.println("remainderSUB: " + remainderSUB);
-
 				
 				if (number2 < number1) {					
 					number2 = number2 + 10;
@@ -263,13 +254,11 @@ public class BigInt {
 				}
 			
 				minusDigits = number2 - number1;
-				System.out.println("minusDigits: " + minusDigits);
 
 				
 				digitsString = Integer.toString(minusDigits);
 				
 				minusStrings = digitsString + minusStrings;
-				System.out.println("minusStrings: " + minusStrings);
 
 			}
 			
@@ -286,21 +275,154 @@ public class BigInt {
 	}
 	
 	
-	public String multiply(String s1, String s2) {
+	public String multiply(String strInt) {
+		/**
+		russian peasant multiplication
+		*/
+		
+			
+		
+		int number1 = 0;
+		int halfNumber = 0;
+		int carryOver = 0;
+		int checkLastDigit;
+		char character1;
+		String strNum1 = strInt;
+		BigInt strNum2 = new BigInt(bigIntStr);
+		BigInt trackTotal = new BigInt("0");
+		
+		System.out.println("string 2 numbers: " + strNum2.toString());
+			System.out.println("trackTotal: " + trackTotal.toString());
+			
+			
+		checkLastDigit = Character.getNumericValue(strNum1.charAt(strNum1.length()-1));
+			
+		if (1 == checkLastDigit % 2) {
+			trackTotal.add(strNum2.toString());;
+		}
+				
+		String digitsString = "";
+		String halfStrings = "";
+
+		System.out.println("string 1: " + strNum1.toString());
+				System.out.println("string 2 numbers: " + strNum2.toString());
+				System.out.println("trackTotal: " + trackTotal.toString());
+
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
+
+		while (strNum1.equals("1")== false) {
+			strNum2.add(strNum2.toString());
+			System.out.println("string 2 numbers: " + strNum2.toString());
+			System.out.println("trackTotal: " + trackTotal.toString());
+			
+			for (int i = 0; i < strNum1.length(); i++) {
+				System.out.println(" ENTER FOR LOOP     ENTER FOR LOOP    ENTER FOR LOOP     " );
+
+					
+				character1 = strNum1.charAt(i);
+
+				
+				if (character1 == '+') {
+					character1 = '0';
+				}else if (character1 == '-') {
+					character1 = '0';
+				}
+
+				number1 = Character.getNumericValue(character1);
+				System.out.println("number1: " + number1);
+
+				
+				
+				halfNumber = number1 / 2;
+				
+				System.out.println("halfNumber: " + halfNumber);
+
+				
+				halfNumber = halfNumber + carryOver;
+				carryOver = 0;
+				if (1 < strNum1.length()){
+					if (1 == number1 % 2){
+						carryOver = 5;
+					}
+				}
+				System.out.println("carryOver: " + carryOver);
+
+				
+				digitsString = Integer.toString(halfNumber);
+				
+				System.out.println("digitsString: " + digitsString);
+								
+				halfStrings = halfStrings + digitsString;
+				
+								System.out.println("halfStrings: " + halfStrings);
+			}
+			carryOver = 0;
+
+			
+			System.out.println(" FOR LOOP EXIT       FOR LOOP EXIT       FOR LOOP EXIT       FOR LOOP EXIT " );
+
+			
+			strNum1 = halfStrings;
+			halfStrings = "";
+
+			checkLastDigit = Character.getNumericValue(strNum1.charAt(strNum1.length()-1));
+			System.out.println("lastDigit: " + checkLastDigit);
+			
+			System.out.println("string 1: " + strNum1.toString());
+			if (1 == checkLastDigit % 2) {
+				System.out.println("string 2 numbers: " + strNum2.toString());
+
+				trackTotal.add(strNum2.toString());
+
+				System.out.println("trackTotal: " + trackTotal.toString());
+			}
+			
+			strNum1 = strNum1.replaceFirst ("^0*", "");
+			
+		}
+		
+						System.out.println("FinalTotal: " + trackTotal.toString());
+
 		
 		
 		
 		return "";
 	}
 	
-	public String divide(String s1, String s2) {
+	public String divide(String strInt) {
+		
+		String strNum1 = strInt;
+		String strNum2 = bigIntStr;
+		
+		/**
+		use multiply function
+		a*b = a / 1/b
+		*/
+		
 		
 		
 		
 		return "";
 	}
 	
-	public String remainder(String s1, String s2) {
+	public String remainder(String strInt) {
 		
 		/**
 		divide, then multiply then subtract
@@ -449,13 +571,20 @@ public class BigInt {
 	}
 	
 	
+	  public String getCurrentString() {
+	  
+	  return bigIntStr;
+   }
+	
 	public String toString(){
 		
 		return bigIntStr;
 	}
   
-  
-  
+   public static String toString( BigInt number ) {
+	    String currentBigInt = number.getCurrentString();
+		return currentBigInt;
+   }
   
 
   public static void main( String args[] ) {
@@ -466,16 +595,34 @@ public class BigInt {
 		
 
 		
+		/**
 		System.out.println( "    Testing toString(String s1)....");
 		System.out.print( "      string argument, expecting string '1015345439'" );
 		try { System.out.println( (IntTest.toString().equals("1015345439")) ? " - got   1015345439" : " - no joy" ); }
 		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
-	
-		
+		*/
 
-		System.out.println("test: " + IntTest.subtract("114"));
+						IntTest.multiply("99");
+						
 
 		/**
+								String strNum1 = "0001";
+					int s = String.valueOf(strNum1);
+
+					char character1 = bigIntStr.charAt(strNum1);
+
+				   int number1 = Character.getNumericValue(character1);
+					
+					if (number1 = 1) {
+								System.out.println("test: complete");
+					}
+					
+						IntTest.multiply("100");
+
+
+		
+		System.out.println("test: " + IntTest.subtract("1"));
+		System.out.println("test sdfd: " + IntTest.toString(IntTest));
 		-0 and +0 break the compareTo() function
 		*/
 
