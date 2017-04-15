@@ -308,25 +308,7 @@ public class BigInt {
 				System.out.println("string 2 numbers: " + strNum2.toString());
 				System.out.println("trackTotal: " + trackTotal.toString());
 
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-	System.out.println(" sddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" );
-
+	
 		while (strNum1.equals("1")== false) {
 			strNum2.add(strNum2.toString());
 			System.out.println("string 2 numbers: " + strNum2.toString());
@@ -408,13 +390,47 @@ public class BigInt {
 	
 	public String divide(String strInt) {
 		
-		String strNum1 = strInt;
-		String strNum2 = bigIntStr;
 		
-		/**
-		use multiply function
-		a*b = a / 1/b
-		*/
+		int lengthDiff = 0;
+
+		
+		BigInt strNum1 = new BigInt(strInt);
+
+		String strNum2 = bigIntStr;
+		String zeroString = "";
+		String ballparkMulti = "1";
+		String currentEstimate = "";
+		
+		if (checkSign(strNum1.toString()) == 1 || checkSign(strNum1.toString()) == -1){
+			
+			/**
+			Does not work, need to fix
+			strNum1 = strNum1.substring(1);
+			*/
+		
+		}
+		if (checkSign(strNum2) == 1 || checkSign(strNum2) == -1){
+			strNum2 = strNum2.substring(1);
+		}
+		
+		lengthDiff = strNum2.length() - strNum1.toString().length();
+
+		if (lengthDiff > 0) {
+			zeroString = createZerosString(lengthDiff-1);
+			ballparkMulti = "1" + zeroString;
+		}
+		currentEstimate = strNum1.multiply(ballparkMulti).toString();
+		
+		while(true){
+			
+			
+			
+			
+			
+			false;
+		}
+		
+		ballparkMulti.substring(0,ballparkMulti.length()-1);
 		
 		
 		
@@ -526,7 +542,6 @@ public class BigInt {
 	}
 	
 	
-	
 	public String reverse( String strInt ) {
 	   
      	if (checkValidString(strInt) == false) {
@@ -593,7 +608,8 @@ public class BigInt {
               
 		BigInt IntTest = new BigInt("100");
 		
-
+		String s = "abcdefg";
+		System.out.println("test: " + s.substring(1,4));
 		
 		/**
 		System.out.println( "    Testing toString(String s1)....");
@@ -602,7 +618,6 @@ public class BigInt {
 		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
 		*/
 
-						IntTest.multiply("99");
 						
 
 		/**
@@ -623,6 +638,9 @@ public class BigInt {
 		
 		System.out.println("test: " + IntTest.subtract("1"));
 		System.out.println("test sdfd: " + IntTest.toString(IntTest));
+		
+		
+		address negatives in multiplication
 		-0 and +0 break the compareTo() function
 		*/
 
