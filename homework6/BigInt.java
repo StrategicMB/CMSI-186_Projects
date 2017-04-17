@@ -276,10 +276,7 @@ public class BigInt {
 	
 	
 	public String multiply(String strInt) {
-		/**
-		russian peasant multiplication
-		*/
-		
+	
 			
 		
 		int number1 = 0;
@@ -291,8 +288,7 @@ public class BigInt {
 		BigInt strNum2 = new BigInt(bigIntStr);
 		BigInt trackTotal = new BigInt("0");
 		
-		System.out.println("string 2 numbers: " + strNum2.toString());
-			System.out.println("trackTotal: " + trackTotal.toString());
+System.out.println("multiplying");
 			
 			
 		checkLastDigit = Character.getNumericValue(strNum1.charAt(strNum1.length()-1));
@@ -304,18 +300,15 @@ public class BigInt {
 		String digitsString = "";
 		String halfStrings = "";
 
-		System.out.println("string 1: " + strNum1.toString());
-				System.out.println("string 2 numbers: " + strNum2.toString());
-				System.out.println("trackTotal: " + trackTotal.toString());
+
+
 
 	
 		while (strNum1.equals("1")== false) {
 			strNum2.add(strNum2.toString());
-			System.out.println("string 2 numbers: " + strNum2.toString());
-			System.out.println("trackTotal: " + trackTotal.toString());
+
 			
 			for (int i = 0; i < strNum1.length(); i++) {
-				System.out.println(" ENTER FOR LOOP     ENTER FOR LOOP    ENTER FOR LOOP     " );
 
 					
 				character1 = strNum1.charAt(i);
@@ -328,13 +321,11 @@ public class BigInt {
 				}
 
 				number1 = Character.getNumericValue(character1);
-				System.out.println("number1: " + number1);
 
 				
 				
 				halfNumber = number1 / 2;
 				
-				System.out.println("halfNumber: " + halfNumber);
 
 				
 				halfNumber = halfNumber + carryOver;
@@ -344,91 +335,136 @@ public class BigInt {
 						carryOver = 5;
 					}
 				}
-				System.out.println("carryOver: " + carryOver);
 
 				
 				digitsString = Integer.toString(halfNumber);
 				
-				System.out.println("digitsString: " + digitsString);
 								
 				halfStrings = halfStrings + digitsString;
 				
-								System.out.println("halfStrings: " + halfStrings);
 			}
 			carryOver = 0;
 
 			
-			System.out.println(" FOR LOOP EXIT       FOR LOOP EXIT       FOR LOOP EXIT       FOR LOOP EXIT " );
 
 			
 			strNum1 = halfStrings;
 			halfStrings = "";
 
 			checkLastDigit = Character.getNumericValue(strNum1.charAt(strNum1.length()-1));
-			System.out.println("lastDigit: " + checkLastDigit);
 			
-			System.out.println("string 1: " + strNum1.toString());
 			if (1 == checkLastDigit % 2) {
-				System.out.println("string 2 numbers: " + strNum2.toString());
 
 				trackTotal.add(strNum2.toString());
 
-				System.out.println("trackTotal: " + trackTotal.toString());
 			}
 			
 			strNum1 = strNum1.replaceFirst ("^0*", "");
 			
 		}
 		
-						System.out.println("FinalTotal: " + trackTotal.toString());
 
 		
 		
 		
-		return "";
+		return trackTotal.toString();
 	}
 	
 	public String divide(String strInt) {
 		
 		
 		int lengthDiff = 0;
-
+		int s = 0;
+		int strIntLength = 0;
+		int bigIntLength = 0;
+		int firstStrIntNum = 0;
+		int firstBigIntNum = 0;
+		int count = 0;
+		char firstStrIntChar;
+		char firstBigIntChar;
+		String countStr = "";
+		String firstDigitStr = "";
+		String difference = "";
 		
-		BigInt strNum1 = new BigInt(strInt);
+		BigInt bigNum1 = new BigInt(strInt);
+		BigInt bigNum2 = new BigInt(bigIntStr);
+		BigInt estimation = new BigInt("0");
 
-		String strNum2 = bigIntStr;
+		String lowerBound = bigNum2.subtract(strInt).toString();
+		
+				System.out.println("bigNum1: " + bigNum1.toString());
+
+		System.out.println("bigNum2: " + bigNum2.toString());
+		
+		bigNum2.add(strInt);
+		System.out.println("bigNum2: " + bigNum2.toString());
+
 		String zeroString = "";
 		String ballparkMulti = "1";
-		String currentEstimate = "";
+		String estimateP0 = "";
 		
-		if (checkSign(strNum1.toString()) == 1 || checkSign(strNum1.toString()) == -1){
+		if (checkSign(bigNum1.toString()) == 1 || checkSign(bigNum1.toString()) == -1){
 			
-			/**
-			Does not work, need to fix
-			strNum1 = strNum1.substring(1);
-			*/
+			strIntLength = bigNum1.toString().length() - 1;
 		
+		}else {
+			strIntLength = bigNum1.toString().length();
 		}
-		if (checkSign(strNum2) == 1 || checkSign(strNum2) == -1){
-			strNum2 = strNum2.substring(1);
+		if (checkSign(bigNum2.toString()) == 1 || checkSign(bigNum2.toString()) == -1){
+			bigIntLength = bigNum2.toString().length() - 1;
+		}else {
+			bigIntLength = bigNum2.toString().length();
 		}
 		
-		lengthDiff = strNum2.length() - strNum1.toString().length();
+		lengthDiff = bigIntLength - strIntLength;
 
+		firstStrIntChar = bigNum1.toString().charAt(0);
+		firstBigIntChar = bigNum2.toString().charAt(0);
+		
+		firstStrIntNum = Character.getNumericValue(firstStrIntChar);
+		firstBigIntNum = Character.getNumericValue(firstBigIntChar);
+
+		if (firstBigIntNum < firstStrIntNum){
+			firstBigIntNum = firstBigIntNum * 10; 
+			lengthDiff = lengthDiff - 1;
+		}
+		firstDigitStr = String.valueOf((firstBigIntNum/firstStrIntNum));
+		
 		if (lengthDiff > 0) {
 			zeroString = createZerosString(lengthDiff-1);
-			ballparkMulti = "1" + zeroString;
+			ballparkMulti = firstDigitStr + zeroString;
+		}else {
+			ballparkMulti = firstDigitStr;
 		}
-		currentEstimate = strNum1.multiply(ballparkMulti).toString();
 		
-		while(true){
+		System.out.println("bigNum1: " + bigNum1.toString());
+		System.out.println("ballparkMulti: " + ballparkMulti);
+
+		estimateP0 = (bigNum1.multiply(ballparkMulti)).toString();
+		
+		while(estimation.compareTo(bigIntStr) == 1) {
 			
-			
-			
-			
-			
-			false;
+			count++;
+			estimation.add(estimateP0);
 		}
+		count = count - 1;
+		estimation.subtract(estimateP0);
+		
+		System.out.println("estimate: " + estimation.toString());
+		
+		difference = (bigNum2.subtract(estimation.toString())).toString();
+
+		estimation.zeroNumber();
+		estimation.add(estimateP0);
+		estimation.multiply(count)
+
+		
+/**
+		use linear extrapolation
+		compareTo the currentEstimate with the bigInt value. if less create an estimate with firstDigit being 1 less
+		
+		*/
+
 		
 		ballparkMulti.substring(0,ballparkMulti.length()-1);
 		
@@ -446,6 +482,13 @@ public class BigInt {
 		
 		return "";
 	}
+	
+	public String zeroNumber(){
+		
+		return bigIntStr = "0";
+		
+	}
+	
   	
 	public int compareTo(String strInt){
 				
@@ -606,10 +649,10 @@ public class BigInt {
 				
 		System.out.println( "\nBIGINT CLASS TESTER PROGRAM\n");
               
-		BigInt IntTest = new BigInt("100");
+		BigInt IntTest = new BigInt("10000");
 		
-		String s = "abcdefg";
-		System.out.println("test: " + s.substring(1,4));
+
+	
 		
 		/**
 		System.out.println( "    Testing toString(String s1)....");
@@ -618,7 +661,7 @@ public class BigInt {
 		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
 		*/
 
-						
+		IntTest.divide("15");
 
 		/**
 								String strNum1 = "0001";
@@ -642,6 +685,7 @@ public class BigInt {
 		
 		address negatives in multiplication
 		-0 and +0 break the compareTo() function
+		account for negatives in divide program
 		*/
 
 		
