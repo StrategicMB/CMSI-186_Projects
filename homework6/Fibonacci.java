@@ -2,11 +2,11 @@ public class Fibonacci {
 
 	public static void main( String args[] ) {
 
-		BigInt fibonacciNumber = new BigInt("1");
+		GinormousInt fibonacciNumber = new GinormousInt("0");
   
 		int nthNumber = 0;
 		String fibonacciPrevious = "";
-		String oldFibonacci1 = "0";
+		String oldFibonacci1 = "1";
 		String oldFibonacci2 = "0";
   		try {
 			nthNumber = Integer.parseInt(args[0]);
