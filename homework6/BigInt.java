@@ -372,7 +372,19 @@ System.out.println("multiplying");
 	
 	public String divide(String strInt) {
 		
+		/** Just use LONG DIVISION
+		*/
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/**
 		int lengthDiff = 0;
 		int s = 0;
 		int strIntLength = 0;
@@ -459,16 +471,11 @@ System.out.println("multiplying");
 		estimation.multiply(count)
 
 		
-/**
-		use linear extrapolation
-		compareTo the currentEstimate with the bigInt value. if less create an estimate with firstDigit being 1 less
-		
-		*/
 
 		
 		ballparkMulti.substring(0,ballparkMulti.length()-1);
 		
-		
+		*/
 		
 		
 		return "";
