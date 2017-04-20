@@ -660,7 +660,9 @@ public class GinormousInt {
 		return bigIntStr;
 	}
   
-
+	public static GinormousInt valueOf(GinormousInt bigInt){
+		return bigInt;
+	}
   
 
   public static void main( String args[] ) {
@@ -669,8 +671,7 @@ public class GinormousInt {
               
 		GinormousInt IntTest = new GinormousInt("900");		
 		IntTest.remainder("31");
-		
-		System.out.println(IntTest.toString());
+
 		
 		System.out.println( "    Testing remainder(String 30)....");
 		System.out.print( "      string argument, expecting string '001'" );
@@ -678,8 +679,105 @@ public class GinormousInt {
 		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
 	
 
+	
+		IntTest.add("39");
+
+	
+		System.out.println( "    Testing add(String 39)....");
+		System.out.print( "      string argument, expecting string '040'" );
+		try { System.out.println( (IntTest.toString().equals("040")) ? " - got   040" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+		
+		IntTest.subtract("20");
+
+	
+		System.out.println(IntTest.toString());
+
+		System.out.println( "    Testing subtract(String 20)....");
+		System.out.print( "      string argument, expecting string '020'" );
+		try { System.out.println( (IntTest.toString().equals("020")) ? " - got   020" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+		
+				IntTest.multiply("590");
+
+	
+		System.out.println(IntTest.toString());
+
+		System.out.println( "    Testing multiply(String 590)....");
+		System.out.print( "      string argument, expecting string '11800'" );
+		try { System.out.println( (IntTest.toString().equals("11800")) ? " - got   11800" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+		
+				IntTest.divide("202");
+
+	
+		System.out.println(IntTest.toString());
+
+		System.out.println( "    Testing remainder(String 58)....");
+		System.out.print( "      string argument, expecting string '058'" );
+		try { System.out.println( (IntTest.toString().equals("058")) ? " - got   058" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+		
+	
 
 
+
+		System.out.println( "    Testing remainder(String 058)....");
+		System.out.print( "      string argument, expecting int 1" );
+		try { System.out.println( (IntTest.equals("058")) ? " - got   True" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+		
+		
+		
+		
+		
+		GinormousInt IntTest2 = new GinormousInt("90");		
+
+		IntTest.subtract("-20");
+
+	
+		System.out.println(IntTest.toString());
+
+		System.out.println( "    Testing subtract(String -20)....");
+		System.out.print( "      string argument, expecting string '-020'" );
+		try { System.out.println( (IntTest.toString().equals("078")) ? " - got   078" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+		
+				IntTest.multiply("590");
+
+	
+		System.out.println(IntTest.toString());
+
+		System.out.println( "    Testing multiply(String 46020)....");
+		System.out.print( "      string argument, expecting string '46020'" );
+		try { System.out.println( (IntTest.toString().equals("46020")) ? " - got   46020" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+		
+				IntTest.divide("-202");
+
+	
+		System.out.println(IntTest.toString());
+
+		System.out.println( "    Testing remainder(String -0227)....");
+		System.out.print( "      string argument, expecting string '-0227'" );
+		try { System.out.println( (IntTest.toString().equals("-0227")) ? " - got   -0227" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+		
+	
+
+
+		
+		
+		/**
+		System.out.println( "    Testing remainder(String 30)....");
+		System.out.print( "      string argument, expecting string '001'" );
+		try {( System.out.println(IntTest.compareTo("39") == 1) ? " - got   True" : " - no joy" ); }
+		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
+		*/
+		
+		
+		
+		
    }
    
 }
