@@ -43,6 +43,7 @@ public class GinormousInt {
 		String sumStrings = "";
 		String digitsString = "";
 		String forNegatives = "";
+		String newSign = "";
 		
 		if (checkSign(strIntInput) > 0){
 			sign1 = 1;
@@ -58,16 +59,25 @@ public class GinormousInt {
 		}else if (checkSign(bigIntStr) == 0){
 			sign2 = 0;
 		}
-		
-		
-				
+
+						
+						
 		if (sign1 == 0) {
 			sumStrings = bigIntStr;
 		}else if (sign2 == 0) {
 			sumStrings = strIntInput;
 		}else if (sign1 * -1 == sign2) {
+			if (checkSign(strIntInput) == 1 ||checkSign(strIntInput) == -1 ){
+			strIntInput = strIntInput.substring(1); 
+			}
+			if (sign1 == 1) {
+				newSign = "-";
+			}else if (sign1 == -1) {
+				newSign = "+";
+			}
+			strIntInput = newSign + strIntInput;
+
 			subtract(strIntInput);
-			System.exit(1);
 		}else if (sign1 == sign2){
 
 			int stringLength = 0;
@@ -132,13 +142,12 @@ public class GinormousInt {
 
 				
 				sumStrings = digitsString + sumStrings;
-				
+
 			}
 			
-			
 		}
+			bigIntStr = forNegatives + sumStrings;
 
-		bigIntStr = forNegatives + sumStrings;
 
 
 		return bigIntStr;
@@ -171,7 +180,6 @@ public class GinormousInt {
 		}else if (checkSign(bigIntStr) < 0){
 			sign2 = -1;
 		}
-		
 				
 		if (sign1 * -1 == sign2) {
 			if (checkSign(strIntInput) == 1 ||checkSign(strIntInput) == -1 ){
@@ -185,11 +193,10 @@ public class GinormousInt {
 			strIntInput = newSign + strIntInput;
 
 			add(strIntInput);
-			System.exit(1);
 		}else if (sign1 == sign2){
 			int stringLength = 0;
 			int lengthDiff = 0;
-			
+
 			if (strIntInput.length() > bigIntStr.length()) {
 				stringLength = strIntInput.length();
 				lengthDiff = stringLength - bigIntStr.length();
@@ -262,10 +269,10 @@ public class GinormousInt {
 
 			}
 			
-			
+			bigIntStr = forNegatives + minusStrings;
+
 		}
 
-		bigIntStr = forNegatives + minusStrings;
 		
 
 		
@@ -302,8 +309,10 @@ System.out.println("multiplying");
 
 
 
+
 	
 		while (strNum1.equals("1")== false) {
+						
 			strNum2.add(strNum2.toString());
 
 			
@@ -321,7 +330,7 @@ System.out.println("multiplying");
 
 				number1 = Character.getNumericValue(character1);
 
-				
+
 				
 				halfNumber = number1 / 2;
 				
@@ -337,10 +346,10 @@ System.out.println("multiplying");
 
 				
 				digitsString = Integer.toString(halfNumber);
-				
+
 								
 				halfStrings = halfStrings + digitsString;
-				
+
 			}
 			carryOver = 0;
 
@@ -351,16 +360,18 @@ System.out.println("multiplying");
 			halfStrings = "";
 
 			checkLastDigit = Character.getNumericValue(strNum1.charAt(strNum1.length()-1));
-			
+											System.out.println("checkLastDigit: " + checkLastDigit);
+
 			if (1 == checkLastDigit % 2) {
 
 				trackTotal.add(strNum2.toString());
 
 			}
-			
+
 			strNum1 = strNum1.replaceFirst ("^0*", "");
+			
+
 		}
-		
 
 		
 		
@@ -451,13 +462,10 @@ System.out.println("multiplying");
 			remainder = previousNum;
 
 
-			System.out.println("remainder: " + remainder);
 
 			countString = "" + count;
-			System.out.println("count: " + count);
 
 			TrackTotal = TrackTotal + countString;
-			System.out.println("TrackTotal: " + TrackTotal);
 			
 			while(endNumber <= bigIntStr.length()) {
 				currentValue = remainder + bigIntStr.substring(startNumber,endNumber);
@@ -468,7 +476,6 @@ System.out.println("multiplying");
 					previousNum = partialInt.toString();
 					partialInt.subtract(strIntInput);		
 					count++;
-					System.out.println("test " + partialInt.toString());
 
 				}
 				
@@ -481,13 +488,11 @@ System.out.println("multiplying");
 				endNumber = endNumber + 1;
 				remainder = previousNum;
 				
-				System.out.println("remainder: " + remainder);
-			System.out.println("TrackTotal: " + TrackTotal);
+
 
 				
 			}
 			
-			System.out.println("Total: " + TrackTotal); 
 		
 		
 		return bigIntStr = TrackTotal;
@@ -497,15 +502,10 @@ System.out.println("multiplying");
 		GinormousInt currentBigInt = new GinormousInt(bigIntStr);
 		currentBigInt.divide(strIntInput);
 		
-		System.out.println("postDivide" + currentBigInt.toString());
 		
 		currentBigInt.multiply(strIntInput);
-		
-		System.out.println("postmultiply" + currentBigInt.toString());
-
-		
+	
 		currentBigInt.subtract(bigIntStr);
-		System.out.println("rem" + currentBigInt.toString());
 		
 		return "";
 	}
@@ -600,10 +600,10 @@ System.out.println("multiplying");
 	
 	public int checkSign(String str1) {
 		char firstChar = str1.charAt(0);
-		if (firstChar == '-') {
+		if (str1.length() == 1 && firstChar == '0') {
+			return 0;
+		} else if (firstChar == '-') {
 			return -1;
-		}else if (str1.length() == 1 && firstChar == '0') {
-			return 0;	
 		}else if ( firstChar == '+'){
 			return 1;
 		}else {
@@ -611,32 +611,8 @@ System.out.println("multiplying");
 		}
 	}
 	
+
 	
-	public String reverse( String strIntInput ) {
-	   
-     	if (checkValidString(strIntInput) == false) {
-		    return "No Integer input" ;
-	    }
-	   
-	    int totallength = strIntInput.length();
-	    String stringold = strIntInput;
-	    String stringnew = "";
-	    for(int i = 0; i < totallength; i++){
-		    stringnew = stringnew + stringold.charAt(stringold.length()-1);
-		    stringold = strIntInput.substring(0,stringold.length()-1) ;
-	    }			   		
-        return stringnew;
-    }
-	
-	
-	
-	public boolean checkValidString(String strIntInput) {
-   	    if (strIntInput == null || strIntInput.isEmpty()|| strIntInput.matches(".")) {
-	        return false;
-	    } else {
-		    return true;
-	    }
-    }  
 	
 	public String createZerosString(int stringLength){
 		String output = "";
@@ -658,47 +634,35 @@ System.out.println("multiplying");
 		return bigIntStr;
 	}
   
-   public static String toString( GinormousInt number ) {
-	    String currentBigInt = number.getCurrentString();
-		return currentBigInt;
-   }
+
   
 
   public static void main( String args[] ) {
 				
-		System.out.println( "\nBIGINT CLASS TESTER PROGRAM\n");
+		System.out.println( "\nGINORMOUSINT CLASS TESTER PROGRAM\n");
               
 		GinormousInt IntTest = new GinormousInt("900");
+		IntTest.multiply("11");
 		
-
-	
+		System.out.println("Testing: " + IntTest.toString());
 		
-		/**
-		System.out.println( "    Testing toString(String s1)....");
-		System.out.print( "      string argument, expecting string '1015345439'" );
-		try { System.out.println( (IntTest.toString().equals("1015345439")) ? " - got   1015345439" : " - no joy" ); }
+		
+		
+		System.out.println( "    Testing remainder(String 30)....");
+		System.out.print( "      string argument, expecting string '1'" );
+		try { System.out.println( (IntTest.remainder("31").toString().equals("1")) ? " - got   001" : " - no joy" ); }
 		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
-		*/
-		IntTest.remainder("31");
+	
+
 
 		/**
-								String strNum1 = "0001";
-					int s = String.valueOf(strNum1);
 
-					char character1 = bigIntStr.charAt(strNum1);
-
-				   int number1 = Character.getNumericValue(character1);
-					
-					if (number1 = 1) {
-								System.out.println("test: complete");
-					}
 					
 						IntTest.multiply("100");
 
 
 		
-		System.out.println("test: " + IntTest.subtract("1"));
-		System.out.println("test sdfd: " + IntTest.toString(IntTest));
+
 		
 		
 		address negatives in multiplication
@@ -706,14 +670,7 @@ System.out.println("multiplying");
 		account for negatives in divide program
 		*/
 
-		
-		/**
-              1015345439
-		System.out.println( "    Testing yLocation()....");
-		System.out.print( "      ball moved, expecting string 9.57" );
-		try { System.out.println( ("9.57".equals(df.format(ballTest.yLocation()))) ? " - got   9.57" : " - no joy" ); }
-		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
-		*/
+
    }
    
 }
