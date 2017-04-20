@@ -1,11 +1,10 @@
 /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *  File name     :  Strings.java
- *  Purpose       :  Provides a class defining methods for the SoccerSim class
+ *  File name     :  GinormousInt.java
+ *  Purpose       :  Provides a class of methods for using big integers
  *  @author       :  Michael Brady
- *  Date written  :  2017-04-04
- *  Description   :  This class generates the ball objects and contains methods associated
- *					 with that object.
- *  Notes         :  The angle uses north as the 0 degrees goin clockwise from there.
+ *  Date written  :  2017-04-19
+ *  Description   :  This class has operations for large integers
+ *  Notes         :  None
  *  Warnings      :  None
  *  Exceptions    :  IllegalArgumentException when the input arguments are "hinky"
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -13,7 +12,7 @@
  *  ---------------
  *            Rev      Date     Modified by:  Reason for change/modification
  *           -----  ----------  ------------  -----------------------------------------------------------
- *  @version 1.0.0  2017-04-04  Michael Brady Writing logic for methods
+ *  @version 1.0.0  2017-04-19  Michael Brady Writing methods and logic
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
  import java.text.DecimalFormat;
@@ -28,9 +27,6 @@ public class GinormousInt {
 		bigIntStr = initialString;
 
 	}
-  
-  
-  
   
 	public String add(String strIntInput){
 		int remainderAdd = 0;
@@ -290,11 +286,38 @@ public class GinormousInt {
 		int carryOver = 0;
 		int checkLastDigit;
 		char character1;
+		int sign1 = 0;
+		int sign2 = 0;
+		String newSign = "";
+		
+		if (checkSign(strIntInput) > 0){
+			sign1 = 1;
+		}else if (checkSign(strIntInput) < 0){
+			sign1 = -1;
+		}
+		if (checkSign(bigIntStr) > 0){
+			sign2 = 1;
+		}else if (checkSign(bigIntStr) < 0){
+			sign2 = -1;
+		}
+		
+		
+		if (checkSign(strIntInput) == 1 ||checkSign(strIntInput) == -1 ){
+			strIntInput = strIntInput.substring(1); 
+		}
+		if (checkSign(bigIntStr) == 1 ||checkSign(bigIntStr) == -1 ){
+			bigIntStr = bigIntStr.substring(1); 
+		}
+		if (sign1 * -1 == sign2){
+			newSign = "-";
+		}
+		
+		
+		
 		String strNum1 = strIntInput;
 		GinormousInt strNum2 = new GinormousInt(bigIntStr);
 		GinormousInt trackTotal = new GinormousInt("0");
 		
-System.out.println("multiplying");
 			
 			
 		checkLastDigit = Character.getNumericValue(strNum1.charAt(strNum1.length()-1));
@@ -360,7 +383,6 @@ System.out.println("multiplying");
 			halfStrings = "";
 
 			checkLastDigit = Character.getNumericValue(strNum1.charAt(strNum1.length()-1));
-											System.out.println("checkLastDigit: " + checkLastDigit);
 
 			if (1 == checkLastDigit % 2) {
 
@@ -375,7 +397,7 @@ System.out.println("multiplying");
 
 		
 		
-		return bigIntStr = trackTotal.toString();
+		return bigIntStr = newSign + trackTotal.toString();
 	}
 	
 	public String divide(String strIntInput) {
@@ -386,8 +408,6 @@ System.out.println("multiplying");
 		
 		int sign1 = 0;
 		int sign2 = 0;
-		int hasSign1 = 0;
-		int hasSign2 = 0;
 		int count = -1;
 		int startNumber = 0;
 		int endNumber = 1;
@@ -403,37 +423,34 @@ System.out.println("multiplying");
 		
 
 		
+		String newSign = "";
+		
 		if (checkSign(strIntInput) > 0){
 			sign1 = 1;
 		}else if (checkSign(strIntInput) < 0){
 			sign1 = -1;
-		}else if (checkSign(strIntInput) == 0){
-			sign1 = 0;
 		}
 		if (checkSign(bigIntStr) > 0){
 			sign2 = 1;
 		}else if (checkSign(bigIntStr) < 0){
 			sign2 = -1;
-		}else if (checkSign(bigIntStr) == 0){
-			sign2 = 0;
 		}
 		
-		character1 = strIntInput.charAt(0);
-		character2 = bigIntStr.charAt(0);
+		
+		if (checkSign(strIntInput) == 1 ||checkSign(strIntInput) == -1 ){
+			strIntInput = strIntInput.substring(1); 
+		}
+		if (checkSign(bigIntStr) == 1 ||checkSign(bigIntStr) == -1 ){
+			bigIntStr = bigIntStr.substring(1); 
+		}
+		if (sign1 * -1 == sign2){
+			newSign = "-";
+		}
+		
 
-		if (character1 == '+') {
-			hasSign1 = 1;
-		}else if (character1 == '-') {
-			hasSign1 = 1;
-		}
-		if (character2 == '+') {
-			hasSign2 = 1;
-		}else if (character2 == '-') {
-			hasSign2 = 1;
-		}
 		
-		strIntInput = strIntInput.substring(hasSign1,strIntInput.length());
-		bigIntStr = bigIntStr.substring(hasSign2,bigIntStr.length());
+		strIntInput = strIntInput.substring(0,strIntInput.length());
+		bigIntStr = bigIntStr.substring(0,bigIntStr.length());
 		
 		GinormousInt bigNum1 = new GinormousInt(strIntInput);
 		GinormousInt bigNum2 = new GinormousInt(bigIntStr);
@@ -495,19 +512,18 @@ System.out.println("multiplying");
 			
 		
 		
-		return bigIntStr = TrackTotal;
+		return bigIntStr = newSign + TrackTotal;
 	}
 	
 	public String remainder(String strIntInput) {
 		GinormousInt currentBigInt = new GinormousInt(bigIntStr);
 		currentBigInt.divide(strIntInput);
 		
-		
 		currentBigInt.multiply(strIntInput);
-	
-		currentBigInt.subtract(bigIntStr);
+
+		currentBigInt.subtract(strIntInput);
 		
-		return "";
+		return bigIntStr = currentBigInt.toString();
 	}
 	
 	public String setNumber(String inputStr){
@@ -641,12 +657,10 @@ System.out.println("multiplying");
 				
 		System.out.println( "\nGINORMOUSINT CLASS TESTER PROGRAM\n");
               
-		GinormousInt IntTest = new GinormousInt("900");
-		IntTest.multiply("11");
+		GinormousInt IntTest = new GinormousInt("900");		
+		IntTest.remainder("31");
 		
-		System.out.println("Testing: " + IntTest.toString());
-		
-		
+		System.out.println(IntTest.toString());
 		
 		System.out.println( "    Testing remainder(String 30)....");
 		System.out.print( "      string argument, expecting string '1'" );
@@ -654,21 +668,6 @@ System.out.println("multiplying");
 		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
 	
 
-
-		/**
-
-					
-						IntTest.multiply("100");
-
-
-		
-
-		
-		
-		address negatives in multiplication
-		-0 and +0 break the compareTo() function
-		account for negatives in divide program
-		*/
 
 
    }
