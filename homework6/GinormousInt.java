@@ -517,13 +517,11 @@ public class GinormousInt {
 	
 	public String remainder(String strIntInput) {
 		GinormousInt currentBigInt = new GinormousInt(bigIntStr);
+		GinormousInt secondBigInt = new GinormousInt(bigIntStr);
 		currentBigInt.divide(strIntInput);
-		
 		currentBigInt.multiply(strIntInput);
-
-		currentBigInt.subtract(strIntInput);
-		
-		return bigIntStr = currentBigInt.toString();
+		secondBigInt.subtract(currentBigInt.toString());		
+		return bigIntStr = secondBigInt.toString();
 	}
 	
 	public String setNumber(String inputStr){
@@ -550,6 +548,18 @@ public class GinormousInt {
 		}else if (checkSign(currBigIntStr) < 0){
 			sign2 = -1;
 		}
+		
+		if (checkSign(currStrInt) == 1 ||checkSign(currStrInt) == -1 ){
+			currStrInt = currStrInt.substring(1); 
+		}
+		if (checkSign(currBigIntStr) == 1 ||checkSign(currBigIntStr) == -1 ){
+			currBigIntStr = currBigIntStr.substring(1); 
+		}
+		
+		currStrInt = currStrInt.replaceFirst ("^0*", "");
+		currBigIntStr = currBigIntStr.replaceFirst ("^0*", "");
+
+		
 		if (sign1 > sign2) {
 			return 1;
 		}else if (sign1 < sign2) {
@@ -663,8 +673,8 @@ public class GinormousInt {
 		System.out.println(IntTest.toString());
 		
 		System.out.println( "    Testing remainder(String 30)....");
-		System.out.print( "      string argument, expecting string '1'" );
-		try { System.out.println( (IntTest.remainder("31").toString().equals("1")) ? " - got   001" : " - no joy" ); }
+		System.out.print( "      string argument, expecting string '001'" );
+		try { System.out.println( (IntTest.toString().equals("001")) ? " - got   001" : " - no joy" ); }
 		catch( Exception e ) { System.out.println ( " - Exception thrown: " + e.toString() ); }
 	
 
