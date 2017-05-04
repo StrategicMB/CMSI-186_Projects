@@ -1,7 +1,7 @@
-/**
+/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *  File name     :  ChangeMakerTester.java
  *  Purpose       :  Provides a tester class to test ChangeMaker
- *  Author        :  Michael Brady
+ *  @author       :  Michael Brady
  *  Date          :  2017-05-04 
  *  Description   :  This file provides a test harness to test various denominations and amounts for the
  *                   ChangeMaker and to also test bad inputs to ensure th program handles these gracefully.
@@ -11,10 +11,10 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *  Revision History
  *  ----------------
- *            Rev      Date     Modified by:  Reason for change/modification
- *           -----  ----------  ------------  -----------------------------------------------------------
- *  @version 1.0.0  2017-05-04  Michael Brady  Initial writing and release
- */
+ *  Version   Date     Modified by:  Reason for change/modification
+ *  -------  --------  ------------  -----------------------------------------------------------
+ *  1.0.0   017-05-04  Michael Brady  Initial writing and release
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 public class ChangeMakerTester {
 
 	/**
@@ -33,8 +33,7 @@ public class ChangeMakerTester {
 	}
 
 	/**
-	* method to test the United States denominations for ChangeMaker
-	* @return void
+	* method to test the United States denominations for makeChangeWithDynamicProgramming
 	*/
 	static void usDenominations() {
 		int[] usDenominations  = new int[] { 1, 5, 10, 25 };
@@ -71,6 +70,10 @@ public class ChangeMakerTester {
 				
 	}
 
+	
+	/**
+	* method to test denominations { 7, 22, 11, 24 } in makeChangeWithDynamicProgramming
+	*/
 
 	static void oddDenominationsOne() {
 		int[] oddDenominations  = new int[] { 7, 22, 11, 24 };
@@ -105,6 +108,9 @@ public class ChangeMakerTester {
 				
 	}
 	
+	/**
+	* method to test denominations { 24, 61, 49, 101, 93 } in makeChangeWithDynamicProgramming
+	*/
 	
 	static void oddDenominationsTwo() {
 		int[] oddDenominations  = new int[] { 24, 61, 49, 101, 93 };
@@ -145,6 +151,9 @@ public class ChangeMakerTester {
 			
 	}
 	
+	/**
+	* method to test negative denominations in makeChangeWithDynamicProgramming
+	*/
 	
 	static void negativeDenominations() {
 		int[] negativeDenominations  = new int[] { 3, -5, 7};
@@ -157,6 +166,10 @@ public class ChangeMakerTester {
 
 	}
 	
+	/**
+	* method to test a zero denomination in makeChangeWithDynamicProgramming
+	*/
+	
 	static void zeroDenominations() {
 		int[] zeroDenominations  = new int[] { 3, 5, 0, 8 };
 
@@ -168,6 +181,10 @@ public class ChangeMakerTester {
 			
 	}
 	
+	/**
+	* method to test makeChangeWithDynamicProgramming wit no denominations input
+	*/
+	
 	static void noDenomintaions() {
 		int[] noDenomintaions  = new int[] {};
 
@@ -178,6 +195,10 @@ public class ChangeMakerTester {
 		catch( Exception e ) { System.out.println( false ); }
 			
 	}
+	
+	/**
+	* method to test for repeat denominations in makeChangeWithDynamicProgramming
+	*/
 	
 	static void repeatDenominations() {
 		int[] repeatDenominations  = new int[] { 3, 7, 10, 7};

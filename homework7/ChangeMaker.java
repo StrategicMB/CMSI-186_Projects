@@ -25,15 +25,11 @@
 public class ChangeMaker {
 
 	/**
-	Code needs javadocs. Most are already written but need to be written for any new methods
-	
-	Javadoc *.java
-		
+	* the main method which accepts command line inputs and calls 
+	* the makeChangeWithDynamicProgramming method
+	* @param args String[] array containing command line parameters
+	* @return void
 	*/
-
-
-
-
 	public static void main(String[] args) {
         if (args.length != 2) {
             printUsage();
@@ -92,6 +88,10 @@ public class ChangeMaker {
         }
     }
 
+	/**
+	*  method to create a tuple of the nominal change combination
+	*  @param Tuple Inputs (int [] denominations, int amount) 
+	*/
     public static Tuple makeChangeWithDynamicProgramming(int[] denominations, int amount) {
 		
 		if (denominations.length < 1) {
@@ -114,37 +114,18 @@ public class ChangeMaker {
             }
         }
 
-            if (amount < 0) {
-                System.out.println("Change cannot be made for negative amounts.\n");
-                return null;
-
-            }
-		
-		
+        if (amount < 0) {
+            System.out.println("Change cannot be made for negative amounts.\n");
+            return null;
+        }
 		
 		int rows = denominations.length;
 		int cols = amount + 1;
 		int currentDenom = 0;
 		int currentTotal = 0;
 		int previousTotal = 0;
-
-		
-		/**
-		 need a trackCount variable
-		*/
-
 		
 		Tuple[][] changeTable = new Tuple[rows][cols];
-		
-		
-		/**
-		changeTable[1][1] = new Tuple(4);
-		changeTable[1][1].setElement(0,3);		
-   		System.out.println("test:" + changeTable[1][1]);
-*/
-	
-
-		
 		
 		for (int i = 0; i < rows; i++){
 			currentDenom = denominations[i];
@@ -165,12 +146,6 @@ public class ChangeMaker {
 						changeTable[i][j] = changeTable[i][j].add(changeTable[i][j-currentDenom]);
 					}
 					
-					
-					
-					/**
-					not adding when looking above, just checking for better solution
-					*/
-					
 				}
 				if (i > 0){
 
@@ -188,25 +163,27 @@ public class ChangeMaker {
 						}
 					}
 				}							
-						
-
-
-			}
-			
-			
-		}
-
-		
-		
+			}			
+		}		
 		return changeTable[rows-1][cols-1];
     }
 
+	/**
+	* A method to output the scrit usage when inputs are invalid
+	* @return void
+	*/
+	
     private static void printUsage() {
         System.out.println("Usage: java Changemaker <denominations> <amount>");
         System.out.println("  - <denominations> is a comma-separated list of denominations (no spaces)");
         System.out.println("  - <amount> is the amount for which to make change");
     }
 
+	/**
+	* Method adds an "s" when coin count is greater than 1
+	* @param int count
+	* @return void
+	*/
     private static String getSimplePluralSuffix(int count) {
         return count == 1 ? "" : "s";
     }
