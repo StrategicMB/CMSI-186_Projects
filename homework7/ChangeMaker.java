@@ -28,11 +28,7 @@ public class ChangeMaker {
 	Code needs javadocs. Most are already written but need to be written for any new methods
 	
 	Javadoc *.java
-	
-	
-	Remove all of the checking conditions from the main program and move them to a separate one that can be referenced from both main an make change with dynamic programming
-	
-	first TestBogusDenomination1 did not work
+		
 	*/
 
 
@@ -98,6 +94,34 @@ public class ChangeMaker {
 
     public static Tuple makeChangeWithDynamicProgramming(int[] denominations, int amount) {
 		
+		if (denominations.length < 1) {
+            printUsage();
+            return null;
+        }
+
+		for (int i = 0; i < denominations.length; i++) {
+			if (denominations[i] <= 0) {
+                System.out.println("Denominations must all be greater than zero.\n");
+                return null;
+            }
+				
+
+                for (int j = 0; j < i; j++) {
+                    if (denominations[j] == denominations[i]) {
+                        System.out.println("Duplicate denominations are not allowed.\n");
+						return null;
+                }
+            }
+        }
+
+            if (amount < 0) {
+                System.out.println("Change cannot be made for negative amounts.\n");
+                return null;
+
+            }
+		
+		
+		
 		int rows = denominations.length;
 		int cols = amount + 1;
 		int currentDenom = 0;
@@ -116,7 +140,6 @@ public class ChangeMaker {
 		/**
 		changeTable[1][1] = new Tuple(4);
 		changeTable[1][1].setElement(0,3);		
-
    		System.out.println("test:" + changeTable[1][1]);
 */
 	
